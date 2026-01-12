@@ -1,78 +1,46 @@
-PROJETO FEIFOOD
+# FEIFood - Sistema de Gestão de Pedidos (Terminal) 🍔🐍
 
-=======================================================
-1. SOBRE O PROJETO
-=======================================================
+O **FEIFood** é uma plataforma de pedidos desenvolvida em Python que utiliza o terminal como interface. O projeto foi construído focando em lógica de programação, persistência de dados em arquivos CSV e modularização de código.
 
-O FEIFood é uma plataforma simplificada para pedidos de comida, desenvolvida como projeto final para a disciplina CCP110 – Fundamentos de Algoritmos. O objetivo central é simular a lógica de um sistema de pedidos, focando na manipulação e persistência de dados.
+Este projeto faz parte da minha jornada acadêmica em **Ciência da Computação na FEI** e demonstra a aplicação prática de conceitos de Engenharia de Software e I/O de dados.
 
-Escopo: O projeto contempla todas as funcionalidades essenciais para o perfil de Usuário.
-Restrições: Não foram implementadas as lógicas de pagamento, acompanhamento de entrega ou mudança de status logístico.
+## 🚀 Funcionalidades
 
-=======================================================
-2. TECNOLOGIAS UTILIZADAS
-=======================================================
+### 🔐 Gestão de Acesso
+- **Cadastro de Usuários:** Sistema de registro com geração automática de IDs únicos.
+- **Autenticação:** Login seguro validando credenciais armazenadas em arquivo.
 
-- Linguagem: Python
-- Persistência: Arquivos de Texto (.csv)
-- I/O: Terminal (CLI)
+### 🍽️ Menu e Busca
+- **Listagem de Alimentos:** Exibição dinâmica de itens disponíveis no `alimentos.csv`.
+- **Busca Case-Insensitive:** Filtro de busca por nome ou descrição que ignora diferenças entre maiúsculas e minúsculas.
 
-=======================================================
-3. ESTRUTURA DO PROJETO
-=======================================================
+### 🛒 Carrinho e Pedidos
+- **Gestão de Carrinho:** Adição, remoção e alteração de quantidades de itens em tempo real.
+- **Cálculo de Total:** Soma automática do valor do pedido com base nos preços dos alimentos.
+- **Persistência de Pedidos:** Os pedidos são armazenados com status (`ABERTO` ou `FECHADO`), permitindo retomar compras pendentes.
 
-O código é modularizado em vários arquivos .py, cada um com responsabilidade específica:
+### ⭐ Avaliação
+- **Feedback:** Sistema que permite ao usuário avaliar pedidos finalizados com notas de 0 a 5 estrelas.
 
-- main_app.py: Ponto de entrada (Loop Principal e Menus).
-- data_manager.py: Responsável por todas as operações de I/O (leitura e escrita) nos arquivos CSV e conversão de tipos.
-- access_manager.py: Lógica de Gestão de Acesso (Login e Cadastro).
-- food_manager.py: Lógica de Busca e Listagem de Alimentos.
-- order_manager.py: Lógica de Gestão de Pedidos/Carrinho.
-- review_manager.py: Lógica para Avaliação de Pedidos.
+## 🛠️ Tecnologias Utilizadas
+- **Linguagem:** Python 3.x
+- **Persistência:** Arquivos CSV (Comma-Separated Values)
+- **Bibliotecas Nativas:** `datetime`, `os`
 
-=======================================================
-4. FUNCIONALIDADES IMPLEMENTADAS (PERFIL USUÁRIO)
-=======================================================
+## 📂 Estrutura do Projeto
+O projeto foi desenvolvido seguindo o princípio de responsabilidade única, dividido em módulos:
 
-4.1. Gestão de Acesso
-- Cadastrar Novo Usuário: Cria um novo registro no usuarios.csv com ID sequencial.
-- Login de Usuário: Autentica o usuário e inicia a sessão.
-- Logout: Finaliza a sessão atual.
+- `main_app.py`: Ponto de entrada e controle dos menus.
+- `data_manager.py`: Camada de I/O responsável pela leitura e escrita nos arquivos CSV.
+- `access_manager.py`: Lógica de autenticação e registro de usuários.
+- `food_manager.py`: Filtros e listagem de alimentos.
+- `order_manager.py`: Lógica de manipulação de carrinhos e persistência de pedidos.
+- `review_manager.py`: Processamento de avaliações de pedidos.
 
-4.2. Busca e Listagem (Opção 1)
-- Listagem Completa: Exibe todos os alimentos cadastrados.
-- Busca: Permite buscar por Nome ou Descrição (case-insensitive).
-
-4.3. Gestão de Pedidos (Opção 2)
-- Criação/Carregamento: Inicia um novo pedido ou carrega o pedido em status ABERTO.
-- Adicionar/Alterar Item: Ajusta a quantidade de itens no carrinho.
-- Finalizar Pedido: Altera o STATUS do pedido para FECHADO.
-- Cancelar Pedido: Remove o pedido do arquivo pedidos.csv.
-
-4.4. Avaliação (Opção 3)
-- Permite atribuir uma nota de 0 a 5 estrelas a pedidos que estejam com o status FECHADO.
-
-=======================================================
-5. INSTALAÇÃO E EXECUÇÃO
-=======================================================
-
-PRÉ-REQUISITOS
-- Ter o Python 3 instalado na sua máquina.
-
-EXECUÇÃO
-1. Crie os Arquivos CSV: Garanta que os 4 arquivos CSV necessários (usuarios.csv, alimentos.csv, pedidos.csv, avaliacoes.csv) estejam presentes na pasta do projeto com o cabeçalho correto.
-2. Abra o Terminal: Navegue até a pasta raiz do projeto.
-3. Execute o Arquivo Principal:
+## 📖 Como Executar
+1. Certifique-se de ter o Python instalado.
+2. Clone o repositório.
+3. Garanta que os arquivos `.csv` (usuarios, alimentos, pedidos, avaliacoes) existam na mesma pasta.
+4. Execute o comando:
+   ```bash
    python main_app.py
-4. Interaja: Utilize o menu de opções para começar a usar a plataforma.
-
-=======================================================
-6. ESTRUTURA DE ARQUIVOS CSV
-=======================================================
-
-Os arquivos utilizam ponto e vírgula (;) como separador.
-
-- usuarios.csv: ID;LOGIN;SENHA;NOME;TIPO
-- alimentos.csv: ID;NOME;DESCRICAO;PRECO (PRECO usa ponto '.' como decimal)
-- pedidos.csv: ID;ID_USUARIO;DATA_HORA;ITENS;STATUS (ITENS serializado: 1-2,3-1)
-- avaliacoes.csv: ID_PEDIDO;ID_USUARIO;NOTA_ESTRELAS;DATA_AVALIACAO
